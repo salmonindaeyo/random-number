@@ -2,7 +2,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import "./fireworks.css";
-
+import "./snow.css";
+import Image from "next/image";
 export default function Home() {
   const [numbers, setNumbers] = useState<number[]>([0, 0, 0]);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -87,19 +88,38 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+    <div
+      className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: 'url("/images/bgred.png")' }}
+    >
+      <div className="snowflakes" aria-hidden="true">
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
+        <div className="snowflake">❅</div>
+        <div className="snowflake">❆</div>
+        <div className="snowflake">❄</div>
+      </div>
+
       {showFireworks && (
         <div className="pyro">
           <div className="before"></div>
           <div className="after"></div>
         </div>
       )}
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <div className="flex gap-4 mb-6">
+      <div className="bg-white p-4 sm:p-8 rounded-lg shadow-lg w-[90%] sm:w-auto">
+        <div className="flex justify-center bg-white rounded-lg p-10 mb">
+          <Image src="/images/logo.png" alt="logo" width={200} height={200} />
+        </div>
+        <div className="flex gap-2  mb-6 justify-center">
           {numbers.map((num, index) => (
             <motion.div
               key={index}
-              className="w-20 h-24 bg-blue-500 rounded-lg flex items-center justify-center text-white text-4xl font-bold"
+              className="w-full h-[100px] bg-[#475AA8] rounded-lg flex items-center justify-center text-white text-4xl font-bold"
               animate={
                 isAnimating
                   ? {
@@ -120,11 +140,9 @@ export default function Home() {
         <button
           onClick={generateRandom}
           disabled={isAnimating}
-          className={`w-full py-3 rounded-lg text-white font-semibold
+          className={`w-full py-3 rounded-lg text-white mt-6 font-semibold text-sm sm:text-base
             ${
-              isAnimating
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600"
+              isAnimating ? "bg-gray-400 cursor-not-allowed" : "bg-[#475AA8] "
             }`}
         >
           {isAnimating ? "กำลังสุ่ม..." : "สุ่มตัวเลข"}
