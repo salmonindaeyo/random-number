@@ -1,0 +1,4 @@
+html {
+  scroll-behavior: smooth;
+  scroll-timeline: 1s ease-in-out;
+}
